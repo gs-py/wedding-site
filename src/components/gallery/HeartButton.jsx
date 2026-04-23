@@ -17,7 +17,8 @@ export default function HeartButton({ active, count, onToggle, size = 18, classN
       type="button"
       onClick={handle}
       aria-pressed={active}
-      className={`inline-flex items-center gap-1.5 rounded-full bg-cream/90 backdrop-blur px-3 py-1.5 text-sm text-burgundy hover:bg-cream shadow-soft transition ${className}`}
+      aria-label={active ? 'Unheart photo' : 'Heart photo'}
+      className={`inline-flex items-center gap-1.5 rounded-full bg-cream/95 backdrop-blur min-h-[44px] px-3.5 text-sm text-burgundy hover:bg-cream active:scale-95 shadow-soft transition select-none ${className}`}
     >
       <Heart
         size={size}
@@ -26,7 +27,7 @@ export default function HeartButton({ active, count, onToggle, size = 18, classN
           active ? 'text-burgundy' : 'text-burgundy/70'
         }`}
       />
-      <span className="tabular-nums">{count ?? 0}</span>
+      <span className="tabular-nums leading-none">{count ?? 0}</span>
     </button>
   );
 }

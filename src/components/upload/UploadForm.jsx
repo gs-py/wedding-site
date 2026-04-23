@@ -16,7 +16,6 @@ export default function UploadForm() {
   const [files, setFiles] = useState([]);
 
   const disabled = remaining === 0;
-
   const canAdd = useMemo(() => Math.max(0, remaining - files.length), [remaining, files.length]);
 
   const addFiles = (incoming) => {
@@ -53,8 +52,12 @@ export default function UploadForm() {
     if (uploaded) setFiles([]);
   };
 
+  const submitLabel = isUploading
+    ? 'Uploading…'
+    : `Share ${files.length || ''} photo${files.length === 1 ? '' : 's'}`;
+
   return (
-    <form onSubmit={onSubmit} className="space-y-6">
+    <form onSubmit={onSubmit} className="space-y-6 pb-28 sm:pb-0">
       <div className="rounded-3xl bg-white/70 border border-blush/60 p-5 md:p-7 shadow-soft">
         <Input
           label="Your name"
@@ -70,7 +73,7 @@ export default function UploadForm() {
             <Sparkles size={14} className="text-champagne" />
             {remaining} of {MAX_PER_GUEST} photos remaining
           </span>
-          <span className="text-charcoal/50">You’ve shared {usedCount}</span>
+          <span className="text-charcoal/50">You&rsquo;ve shared {usedCount}</span>
         </div>
       </div>
 
@@ -91,14 +94,30 @@ export default function UploadForm() {
 
       {isUploading && <UploadProgress progress={fileProgress} />}
 
-      <div className="flex items-center justify-end">
+      {/* Desktop submit */}
+      <div className="hidden sm:flex items-center justify-end">
         <Button type="submit" disabled={disabled || isUploading || !files.length} size="lg">
           <Camera size={16} />
-          {isUploading
-            ? 'Uploading…'
-            : `Share ${files.length || ''} photo${files.length === 1 ? '' : 's'}`}
+          {submitLabel}
         </Button>
       </div>
+
+      {/* Sticky mobile submit — only when there's something to send */}
+      {files.length > 0 && (
+        <div
+          className="sm:hidden fixed inset-x-0 bottom-0 z-30 px-4 pt-3 bg-cream/95 backdrop-blur border-t border-blush/60"
+          style={{ paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 12px)' }}
+        >
+          <Button
+            type="submit"
+            disabled={disabled || isUploading}
+            size="lg"
+            className="w-full"
+          >
+            <Camera size={16} /> {submitLabel}
+          </Button>
+        </div>
+      )}
     </form>
   );
 }

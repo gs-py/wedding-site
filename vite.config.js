@@ -6,5 +6,6 @@ export default defineConfig({
   server: {
     port: 5173,
     open: true,
+    host: true, // listen on 0.0.0.0 — open the "Network" URL on your phone (same WiFi)
   },
 });

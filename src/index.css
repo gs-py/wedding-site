@@ -4,6 +4,11 @@
 
 :root {
   color-scheme: light;
+  /* exposed to JS / CSS calc as needed */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
 }
 
 html,
@@ -12,9 +17,21 @@ body,
   height: 100%;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   @apply bg-cream text-charcoal font-sans antialiased;
   font-feature-settings: 'ss01', 'cv11';
+  /* safe-area on the sides so content never tucks under a notch */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  /* iOS Safari momentum scroll */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: none;
 }
 
 h1,
@@ -25,16 +42,30 @@ h4 {
   letter-spacing: -0.01em;
 }
 
+/* Inputs ≥ 16px font-size on mobile so iOS Safari doesn't auto-zoom */
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+@media (min-width: 640px) {
+  input,
+  select,
+  textarea {
+    font-size: 15px;
+  }
+}
+
+/* Masonry */
 .masonry {
   column-gap: 0.75rem;
 }
-
 .masonry > * {
   break-inside: avoid;
   margin-bottom: 0.75rem;
 }
 
-/* Scrollbar — soft */
+/* Soft scrollbars */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -47,9 +78,16 @@ h4 {
   background: transparent;
 }
 
-/* Smooth focus rings */
 :focus-visible {
   outline: 2px solid #d4af7a;
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+/* Helpers */
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom), 0px);
+}
+.pt-safe {
+  padding-top: max(env(safe-area-inset-top), 0px);
 }
