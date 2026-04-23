@@ -2,17 +2,47 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#FFF8F0" />
-    <meta name="description" content="A celebration of love — share photos, leave wishes, join the joy." />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <title>%VITE_BRIDE_NAME% &amp; %VITE_GROOM_NAME% — Wedding</title>
+    <meta
+      name="description"
+      content="Join us in celebrating %VITE_BRIDE_NAME% &amp; %VITE_GROOM_NAME%'s wedding — share your photos and leave a wish."
+    />
+
+    <!-- Open Graph (WhatsApp, Facebook, LinkedIn, iMessage) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="%VITE_BRIDE_NAME% &amp; %VITE_GROOM_NAME% — Wedding" />
+    <meta
+      property="og:description"
+      content="Join us in celebrating %VITE_BRIDE_NAME% &amp; %VITE_GROOM_NAME%'s wedding — share your photos and leave a wish."
+    />
+    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="1200" />
+    <meta property="og:image:alt" content="%VITE_BRIDE_NAME% and %VITE_GROOM_NAME%" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="%VITE_BRIDE_NAME% &amp; %VITE_GROOM_NAME% — Wedding" />
+    <meta
+      name="twitter:description"
+      content="Join us in celebrating %VITE_BRIDE_NAME% &amp; %VITE_GROOM_NAME%'s wedding — share your photos and leave a wish."
+    />
+    <meta name="twitter:image" content="/og-image.jpg" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <title>Our Wedding</title>
   </head>
   <body>
     <div id="root"></div>
