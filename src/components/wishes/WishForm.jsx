@@ -16,7 +16,10 @@ export default function WishForm({ onSubmit }) {
     setBusy(true);
     const ok = await onSubmit({ guest_name: guestName, message });
     setBusy(false);
-    if (ok) setMessage('');
+    if (ok) {
+      setMessage('');
+      setGuestName('');
+    }
   };
 
   return (
