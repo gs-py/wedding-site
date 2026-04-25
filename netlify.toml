@@ -1,0 +1,14 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# SPA fallback — every route falls through to index.html so React Router
+# can handle it on the client. The _redirects file is also included for
+# belt-and-suspenders.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[build.environment]
+  NODE_VERSION = "20"
